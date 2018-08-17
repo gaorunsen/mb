@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>留言板</title>
+    <link rel="stylesheet" href="./public/css/home.css">
+</head>
+<body>
+    <div id="box">
+        <h1>留言板</h1>
+        <div class="postbox">
+            <form action="index.php?p=home&c=comment&a=add" method="post">
+                <ul class="userbox">
+                    <li>名称：</li>
+                    <li class="user_name"><input type="text" /></li>
+                    <li>邮箱：</li>
+                    <li class="user_email"><input type="text" /></li>
+                    <li class="user_post"><input type="submit" class="post-button" value="发布" /></li>
+                </ul>
+                <textarea name="" id="" cols="30" rows="10">在此处留言</textarea>
+            </form>
+        </div>
+        <div class="comment_info">
+            留言数：2
+            <span class="sort">
+                排序方式：
+                <a href="#" class="curr">正序</a> 
+                <a href="#">倒序</a>
+            </span>
+        </div>
+            <ul class="comments">
+                <li>
+                    <p>用户名：测试者 01</p>
+                    <p>这里是留言正文，欢迎来到web.mb.com。</p>
+                </li>
+            </ul>
+        <div class="comments_footer">
+            <a href="#" class="curr">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </div>
+    </div>
+</body>
+</html>
