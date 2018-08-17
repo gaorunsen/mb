@@ -24,5 +24,27 @@
                 //执行SQL并换回
                 return $this->db->query($sql);
         }
+        /**
+         * 留言列表
+         */
+        public function getAll(){
+            //获得排序参数
+            $order='';
+            if(isset($_GET['sort'])&& $_GET['sort']=='desc'){
+                $order='order by id desc';
+            }
+            //拼接SQL
+            $sql ="select `poster`,`comment`,`date`,`reply`,from `comment` $order";
+            //查询结果
+            $data=$this->db->fetchAll($sql);
+            return $data;
+        }
+        /**
+         * 留言总数
+         */
+        public function getNumber(){
+            $data=$this->db->fetchRow("select count(*) from `comment`");
+            return $data['count(*)'];
+        }
     }
 ?>

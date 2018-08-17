@@ -23,19 +23,30 @@
             </form>
         </div>
         <div class="comment_info">
-            留言数：2
+            留言数：<?php echo $num ?>
             <span class="sort">
                 排序方式：
-                <a href="#" class="curr">正序</a> 
-                <a href="#">倒序</a>
+                <a href="index.php" <?php if(!isset($_GET ['sort'])) echo 'class="curr"'; ?>>正序</a> 
+                <a href="index.php" <?php if(isset($_GET ['sort']) && $_GET ['sort']=='desc') echo 'class="curr"'; ?>>倒序</a>
             </span>
         </div>
-            <ul class="comments">
-                <li>
-                    <p>用户名：测试者 01</p>
-                    <p>这里是留言正文，欢迎来到web.mb.com。</p>
-                </li>
-            </ul>
+        <ul class="comments">
+            <?php foreach ($data as $v): ?>
+            <li>
+                <p>用户名：<?php echo $v['poster']; ?></p>
+                <p><?php echo $v['comment']; ?></p>
+                <p>发表日期：<?php echo $v['date'];  ?></p>
+                <?php if($v['reply']!==''); ?>
+                <ul class="comment_reply">
+                    <li>
+                        <p>管理员回复：</p>
+                        <p><?php echo $v['reply']; ?></p>
+                    </li>
+                </ul>
+                <?php endIf; ?>
+            </li>
+            <?php endForeach ?>
+        </ul>
         <div class="comments_footer">
             <a href="#" class="curr">1</a>
             <a href="#">2</a>

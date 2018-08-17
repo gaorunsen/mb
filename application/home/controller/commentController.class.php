@@ -3,11 +3,18 @@
      * 留言模板控制器类
      */
 
-     class commentController{
-        /**
+     class commentController extends platformController{
+        /*
          * 留言列表
          */
-        public function listAction(){
+        public function listAction()
+        {   
+            //实例化comment模型
+            $commentModel=new commentModel();
+            //取得所有留言数据
+            $data = $commentModel->getAll();
+            //取得留言总数
+            $num=$commentModel->getNumber();
             //载入视图文件
             require'./application/home/view/comment_list.html';
         }
@@ -26,10 +33,10 @@
             //判断是否执行成功
             if($pass){
                 //成功时
-                echo"发表成功";
+                $this->jump('index.php','发表成功');
             }else{
                 //失败时
-                echo"发表失败";
+                $this->jump('index.php','发表留言失败');
             }
         }
      }
