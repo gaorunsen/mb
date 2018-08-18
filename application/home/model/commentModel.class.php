@@ -7,6 +7,10 @@
          * 添加留言
          */
         public function insert(){
+            //输入过滤
+            $this->filter(array('poster','mail','comment'),'htmlspecialchars');
+            $this->filter(array('comment'),'nl2br');
+
             //接收输入数据
             $data['poster']=$_POST['poster'];
             $data['mail']=$_POST['mail'];
@@ -27,14 +31,14 @@
         /**
          * 留言列表
          */
-        public function getAll(){
+        public function getAll($inmit){
             //获得排序参数
             $order='';
             if(isset($_GET['sort'])&& $_GET['sort']=='desc'){
                 $order='order by id desc';
             }
             //拼接SQL
-            $sql ="select `poster`,`comment`,`date`,`reply`,from `comment` $order";
+            $sql ="select `poster`,`comment`,`date`,`reply`,from `comment` $order limit $limit";
             //查询结果
             $data=$this->db->fetchAll($sql);
             return $data;
